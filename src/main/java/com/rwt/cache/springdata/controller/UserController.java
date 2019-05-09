@@ -2,6 +2,7 @@ package com.rwt.cache.springdata.controller;
 
 import com.rwt.cache.springdata.entity.User;
 import com.rwt.cache.springdata.service.UserService;
+import com.rwt.cache.springdata.service.UserServiceDemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,8 @@ import java.util.List;
 public class UserController {
 
     @Autowired
+    private UserServiceDemo userServiceDemo;
+    @Autowired
     private UserService userService;
 
     /**
@@ -21,7 +24,7 @@ public class UserController {
      */
     @RequestMapping(value = "/save", method = RequestMethod.GET)
     public User save(User user) {
-        return userService.save(user);
+        return userServiceDemo.save(user);
     }
 
     /**
@@ -29,13 +32,23 @@ public class UserController {
      * */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<User> list(){
-        return userService.findAll();
+        return userServiceDemo.findAll();
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
     public List<User> delete(Long id){
-        userService.deleteById(id);
-        return userService.findAll();
+        userServiceDemo.deleteById(id);
+        return userServiceDemo.findAll();
+    }
+
+    @RequestMapping(value = "/findByAgeNotNull",method = RequestMethod.GET)
+    public List<User> findByAgeNotNull(){
+        return userService.findByAgeNotNull();
+    }
+
+    @RequestMapping(value = "/findByNameLike",method = RequestMethod.GET)
+    public List<User> findByNameLike(String name){
+        return userService.findByNameLike(name);
     }
 
 }

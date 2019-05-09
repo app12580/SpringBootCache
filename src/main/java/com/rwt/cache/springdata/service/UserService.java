@@ -1,11 +1,24 @@
 package com.rwt.cache.springdata.service;
 
+import com.rwt.cache.springdata.dao.UserDao;
 import com.rwt.cache.springdata.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
+import java.util.List;
 
-public interface UserService extends JpaRepository<User, Long>, JpaSpecificationExecutor<User>, Serializable {
+@Service
+public class UserService {
+
+    @Autowired
+    private UserDao userDao;
+
+    public List<User> findByAgeNotNull() {
+        return userDao.findByAgeNotNull();
+    }
+
+    public List<User> findByNameLike(String name) {
+        return userDao.findByNameLike(name);
+    }
 
 }
