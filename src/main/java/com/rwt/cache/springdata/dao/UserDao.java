@@ -22,6 +22,6 @@ public interface UserDao extends JpaRepository<User, Long>, JpaSpecificationExec
     Integer getCountOfUsers();
 
     //JPQL 类似于Hibernate的HQL
-    @Query("from User where name like ?")
-    List<User> findByNameLikeJPQL(String name);
+    @Query("from User where name like :name")
+    List<User> findByNameLikeJPQL(@Param("name") String name);
 }

@@ -37,6 +37,6 @@ public class UserService {
     }
 
     public List<User> findByNameLikeJPQL(String name) {
-        return userDao.findByNameLikeJPQL("%" + name + "%");
+        return userDao.findByNameLikeJPQL("%" + name +"%");
     }
 }
