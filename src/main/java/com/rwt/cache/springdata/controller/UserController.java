@@ -4,11 +4,14 @@ import com.rwt.cache.springdata.entity.User;
 import com.rwt.cache.springdata.service.UserService;
 import com.rwt.cache.springdata.service.UserServiceDemo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -51,4 +54,23 @@ public class UserController {
         return userService.findByNameLike(name);
     }
 
+    @RequestMapping("/findUserPage")
+    public Object findUserPage(int pageNo, int rows) {
+        Page<User> page = userService.findUserPage(pageNo, rows);
+        Map map = new HashMap<>();
+        map.put("content", page.getContent());
+        map.put("totalElements", page.getTotalElements());
+        map.put("totalPages", page.getTotalPages());
+        return map;
+    }
+
+    @RequestMapping("findByNameLikeNative")
+    public List<User> findByNameLikeNative(String name) {
+        return userService.findByNameLikeNative(name);
+    }
+
+    @RequestMapping("getCountOfUsers")
+    public Integer getCountOfUsers() {
+        return userService.getCountOfUsers();
+    }
 }
