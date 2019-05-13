@@ -1,10 +1,11 @@
 package com.rwt.cache.springdata.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="t_document")
-public class Document {
+public class Document implements Serializable{
 
     @Id
     @Column(name="id")

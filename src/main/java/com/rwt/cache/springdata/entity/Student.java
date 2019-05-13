@@ -3,10 +3,11 @@ package com.rwt.cache.springdata.entity;
 import org.apache.ibatis.annotations.One;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="t_student")
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @Column(name="id")
