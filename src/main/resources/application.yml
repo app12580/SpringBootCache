@@ -23,6 +23,12 @@ spring:
     host: 127.0.0.1
     port: 6379
     password:
+  data:
+    mongodb:
+#      uri: mongodb://localhost:27017/mytest
+      host: localhost
+      port: 27017
+      database: mytest
 
 server:
   port: 8090
